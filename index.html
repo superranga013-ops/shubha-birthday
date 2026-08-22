@@ -26,18 +26,11 @@ button{font:inherit}canvas#confetti{position:fixed;inset:0;pointer-events:none;z
 .badge{display:inline-block;padding:8px 14px;border-radius:999px;background:rgba(255,40,70,.12);border:1px solid rgba(255,70,90,.4);color:#ffb9c2;font-weight:800}
 h1{font-size:clamp(42px,10vw,90px);line-height:.95;margin:18px 0 12px;background:linear-gradient(90deg,#fff,var(--gold),#ff76bb,#b38cff);-webkit-background-clip:text;color:transparent}
 .sub{font-size:clamp(18px,4vw,26px);color:#e9dff1}.cursor{display:inline-block;border-right:3px solid var(--gold);padding-right:5px}
-.cta{margin-top:24px;border:0;padding:14px 22px;border-radius:999px;cursor:pointer;color:#fff;background:linear-gradient(90deg,var(--pink),var(--purple));box-shadow:0 10px 35px rgba(255,79,163,.25);font-weight:800}
+.cta{margin-top:24px;border:0;padding:14px 22px;border-radius:999px;cursor:pointer;color:#fff;background:linear-gradient(90deg,var(--pink),var(--purple));box-shadow:0 10px 35px rgba(255,79,163,.25);font-weight:800;transition:transform .2s,box-shadow .2s}.cta:hover{transform:translateY(-2px);box-shadow:0 14px 40px rgba(255,79,163,.38)}.cta.playing{background:linear-gradient(90deg,#28c840,#18a558)}
 section{padding:80px 18px;max-width:1100px;margin:auto}.title{text-align:center;font-size:clamp(30px,6vw,50px);margin:0 0 12px}.lead{text-align:center;color:#cfc3d9;max-width:700px;margin:0 auto 34px;font-size:18px}
 .story{background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.1);border-radius:28px;padding:28px;line-height:1.8;font-size:18px}.story strong{color:#ffd166}
-
-/* Fixed photo collage: equal cards, clean rows, no stretched/broken layout */
-.gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;align-items:start}
-.gallery img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;border-radius:18px;border:1px solid rgba(255,255,255,.1);box-shadow:0 12px 35px rgba(0,0,0,.3);transition:transform .35s,box-shadow .35s}
-.gallery img.wide{grid-column:span 2;aspect-ratio:16/9}
-.gallery img:hover{transform:scale(1.02);box-shadow:0 16px 40px rgba(0,0,0,.45)}
-@media(min-width:720px){.gallery{grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.gallery img.wide{grid-column:span 2;aspect-ratio:16/10}}
-@media(max-width:380px){.gallery{gap:7px}.gallery img{border-radius:14px}.gallery img.wide{border-radius:16px}}
-
+.gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;align-items:start}.gallery img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;border-radius:18px;border:1px solid rgba(255,255,255,.1);box-shadow:0 12px 35px rgba(0,0,0,.3);transition:transform .35s,box-shadow .35s}.gallery img.wide{grid-column:span 2;aspect-ratio:16/9}.gallery img:hover{transform:scale(1.02);box-shadow:0 16px 40px rgba(0,0,0,.45)}
+@media(min-width:720px){.gallery{grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.gallery img.wide{grid-column:span 2;aspect-ratio:16/10}}@media(max-width:380px){.gallery{gap:7px}.gallery img{border-radius:14px}.gallery img.wide{border-radius:16px}}
 .note{text-align:center;padding:42px 22px;border-radius:30px;background:linear-gradient(135deg,rgba(255,79,163,.12),rgba(155,92,255,.12));border:1px solid rgba(255,255,255,.12)}
 .note p{font-size:clamp(20px,4vw,30px);line-height:1.55;margin:0}.secret{display:none;margin-top:24px;padding:24px;border-radius:22px;background:rgba(0,0,0,.25);border:1px dashed rgba(255,209,102,.5);font-size:20px;line-height:1.7}
 footer{text-align:center;padding:40px 18px 70px;color:#a99dae}.music{position:fixed;right:14px;bottom:14px;z-index:30;background:rgba(20,10,30,.88);border:1px solid rgba(255,255,255,.15);border-radius:999px;padding:10px 14px;color:#fff;display:flex;gap:8px;align-items:center}.music button{border:0;background:transparent;color:#fff;cursor:pointer}
@@ -49,64 +42,26 @@ footer{text-align:center;padding:40px 18px 70px;color:#a99dae}.music{position:fi
 <div class="glow g1"></div><div class="glow g2"></div><canvas id="confetti"></canvas>
 <div class="hero"><div class="float f1">🎈</div><div class="float f2">⚠️</div><div class="float f3">🎂</div><div class="card">
 <span class="badge">⚠️ SECURITY ALERT • UNAUTHORIZED ACCESS</span>
-<div class="hack-screen">
-  <div class="hack-top"><span class="dot d1"></span><span class="dot d2"></span><span class="dot d3"></span><span style="margin-left:5px">device_security.exe</span></div>
-  <div class="hack-body">
-    <div class="hack-title">YOUR PHONE HAS BEEN HACKED 😈</div>
-    <div class="hack-warning">CRITICAL SECURITY BREACH DETECTED</div>
-    <div class="hack-lines">
-      <span>▸ Scanning device...</span>
-      <span>▸ Accessing private memories...</span>
-      <span>▸ Locating birthday target: <b>SHUBHA</b></span>
-      <span class="ok">▸ Photos found: 10 ❤️</span>
-      <span class="danger">▸ SYSTEM COMPROMISED — 100%</span>
-    </div>
-    <div class="scan"><i></i></div>
-    <div class="dim">ERROR 404: escaping this birthday surprise is impossible.</div>
-  </div>
-</div>
+<div class="hack-screen"><div class="hack-top"><span class="dot d1"></span><span class="dot d2"></span><span class="dot d3"></span><span style="margin-left:5px">device_security.exe</span></div><div class="hack-body"><div class="hack-title">YOUR PHONE HAS BEEN HACKED 😈</div><div class="hack-warning">CRITICAL SECURITY BREACH DETECTED</div><div class="hack-lines"><span>▸ Scanning device...</span><span>▸ Accessing private memories...</span><span>▸ Locating birthday target: <b>SHUBHA</b></span><span class="ok">▸ Photos found: 10 ❤️</span><span class="danger">▸ SYSTEM COMPROMISED — 100%</span></div><div class="scan"><i></i></div><div class="dim">ERROR 404: escaping this birthday surprise is impossible.</div></div></div>
 <p class="sub"><span id="typing" class="cursor"></span></p>
-<button class="cta" onclick="startSurprise()">TAP TO SEE WHAT THE HACKER WANTS 💥</button>
+<button id="surpriseBtn" class="cta" onclick="startSurprise()">TAP TO SEE WHAT THE HACKER WANTS 💥</button>
 </div></div>
-
-<section class="reveal"><h2 class="title">The Accident 😂</h2><p class="lead">Some friendships are planned. Ours apparently forgot to ask permission.</p>
-<div class="story"><strong>Our friendship: ACCIDENTAL.</strong><br><br>No grand plan. No dramatic beginning. Just two people somehow becoming ridiculously comfortable, ridiculously annoying, and somehow… ridiculously close. 😂<br><br>And now look at us. Too many memories, too many jokes, too much nonsense — and absolutely no option to uninstall this friendship. 🤝🤣</div></section>
-
-<section class="reveal"><h2 class="title">Evidence 📸</h2><p class="lead">Exhibit A through “please don't show this to anyone.”</p>
-<div class="gallery">
-<img class="wide" src="./photo1.jpg" alt="Memory 1">
-<img src="./photo2.jpg" alt="Memory 2">
-<img src="./photo3.jpg" alt="Memory 3">
-<img class="wide" src="./photo4.jpg" alt="Memory 4">
-<img src="./photo5.jpg" alt="Memory 5">
-<img src="./photo6.jpg" alt="Memory 6">
-<img src="./photo7.jpg" alt="Memory 7">
-<img class="wide" src="./photo8.jpg" alt="Memory 8">
-<img src="./photo9.jpg" alt="Memory 9">
-<img src="./photo10.jpg" alt="Memory 10">
-</div></section>
-
-<section class="reveal"><div class="note"><h2 class="title">For You, Shubha ❤️</h2>
-<p>Happy Birthday to one of the most unexpected and unforgettable people in my life. 🫶<br><br>Keep smiling. Keep being the same crazy person. And please don't become too sensible — I have a reputation to maintain. 😂<br><br>Whatever happens, one thing is permanent: <strong>this accidental friendship. ❤️</strong></p>
-<button class="cta" onclick="showSecret()">ONE LAST THING 👀</button>
-<div id="secret" class="secret">🎁 <strong>SECRET MESSAGE UNLOCKED</strong><br><br>You didn't just become a friend by accident… you became one of those people whose memories stay.<br><br>Happy Birthday, Shubha! 🎂❤️<br>— From your permanently irritating bestie 😌😂</div>
-</div></section>
-
+<section class="reveal"><h2 class="title">The Accident 😂</h2><p class="lead">Some friendships are planned. Ours apparently forgot to ask permission.</p><div class="story"><strong>Our friendship: ACCIDENTAL.</strong><br><br>No grand plan. No dramatic beginning. Just two people somehow becoming ridiculously comfortable, ridiculously annoying, and somehow… ridiculously close. 😂<br><br>And now look at us. Too many memories, too many jokes, too much nonsense — and absolutely no option to uninstall this friendship. 🤝🤣</div></section>
+<section class="reveal"><h2 class="title">Evidence 📸</h2><p class="lead">Exhibit A through “please don't show this to anyone.”</p><div class="gallery"><img class="wide" src="./photo1.jpg" alt="Memory 1"><img src="./photo2.jpg" alt="Memory 2"><img src="./photo3.jpg" alt="Memory 3"><img class="wide" src="./photo4.jpg" alt="Memory 4"><img src="./photo5.jpg" alt="Memory 5"><img src="./photo6.jpg" alt="Memory 6"><img src="./photo7.jpg" alt="Memory 7"><img class="wide" src="./photo8.jpg" alt="Memory 8"><img src="./photo9.jpg" alt="Memory 9"><img src="./photo10.jpg" alt="Memory 10"></div></section>
+<section class="reveal"><div class="note"><h2 class="title">For You, Shubha ❤️</h2><p>Happy Birthday to one of the most unexpected and unforgettable people in my life. 🫶<br><br>Keep smiling. Keep being the same crazy person. And please don't become too sensible — I have a reputation to maintain. 😂<br><br>Whatever happens, one thing is permanent: <strong>this accidental friendship. ❤️</strong></p><button class="cta" onclick="showSecret()">ONE LAST THING 👀</button><div id="secret" class="secret">🎁 <strong>SECRET MESSAGE UNLOCKED</strong><br><br>You didn't just become a friend by accident… you became one of those people whose memories stay.<br><br>Happy Birthday, Shubha! 🎂❤️<br>— From your permanently irritating bestie 😌😂</div></div></section>
 <footer>Made with chaos, memories & ❤️ — just for Shubha</footer>
-<div class="music">🎵 <span id="musicText">Song ready</span><button onclick="toggleMusic()">▶️</button><audio id="song" preload="none" loop><source src="song.mp3" type="audio/mpeg"></audio></div>
-
+<div class="music">🎵 <span id="musicText">Song ready</span><button id="musicBtn" onclick="toggleMusic()">▶️</button><audio id="song" preload="metadata" loop><source src="./song.mp3" type="audio/mpeg"></audio></div>
 <script>
 const lines=["Don’t panic… your phone has been hacked. 😈","Relax! It’s only a birthday surprise. 🎂❤️","You have been caught in a special birthday trap! 😂🎁"];
-let li=0,ci=0,deleting=false;const typing=document.getElementById("typing");
-function type(){const text=lines[li];typing.textContent=deleting?text.slice(0,ci--):text.slice(0,ci++);if(!deleting&&ci>text.length){deleting=true;setTimeout(type,1200);return}if(deleting&&ci<0){deleting=false;li=(li+1)%lines.length;ci=0}setTimeout(type,deleting?35:60)}type();
+let li=0,ci=0,deleting=false;const typing=document.getElementById("typing");function type(){const text=lines[li];typing.textContent=deleting?text.slice(0,ci--):text.slice(0,ci++);if(!deleting&&ci>text.length){deleting=true;setTimeout(type,1200);return}if(deleting&&ci<0){deleting=false;li=(li+1)%lines.length;ci=0}setTimeout(type,deleting?35:60)}type();
 const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add("show")}),{threshold:.12});document.querySelectorAll(".reveal").forEach(x=>obs.observe(x));
-function startSurprise(){burst();document.querySelectorAll("section").forEach((x,i)=>setTimeout(()=>x.scrollIntoView({behavior:"smooth"}),i*800));const a=document.getElementById("song");a.play().then(()=>document.getElementById("musicText").textContent="Playing").catch(()=>{})}
+const song=document.getElementById("song"),surpriseBtn=document.getElementById("surpriseBtn"),musicText=document.getElementById("musicText"),musicBtn=document.getElementById("musicBtn");
+async function playSong(){try{await song.play();musicText.textContent="Playing 🎵";musicBtn.textContent="⏸️";surpriseBtn.textContent="SONG PLAYING ❤️ • TAP TO PAUSE";surpriseBtn.classList.add("playing");return true}catch(err){musicText.textContent="Song file not available ⚠️";surpriseBtn.textContent="SONG FILE MISSING ⚠️";console.error("Audio could not play:",err);return false}}
+function startSurprise(){burst();playSong();setTimeout(()=>document.querySelector("section").scrollIntoView({behavior:"smooth"}),350)}
 function showSecret(){document.getElementById("secret").style.display="block";burst();setTimeout(()=>document.getElementById("secret").scrollIntoView({behavior:"smooth",block:"center"}),100)}
-function toggleMusic(){const a=document.getElementById("song");if(a.paused){a.play();document.getElementById("musicText").textContent="Playing"}else{a.pause();document.getElementById("musicText").textContent="Paused"}}
-const c=document.getElementById("confetti"),ctx=c.getContext("2d");let pieces=[];
-function resize(){c.width=innerWidth;c.height=innerHeight}resize();addEventListener("resize",resize);
-function burst(){for(let i=0;i<180;i++)pieces.push({x:innerWidth/2,y:innerHeight*.35,vx:(Math.random()-.5)*13,vy:Math.random()*-11-3,g:.22+Math.random()*.15,s:4+Math.random()*7,r:Math.random()*6})}
-function draw(){ctx.clearRect(0,0,c.width,c.height);pieces.forEach(p=>{p.vy+=p.g;p.x+=p.vx;p.y+=p.vy;p.r+=.15;ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.r);ctx.fillStyle=`hsl(${Math.random()*360},90%,65%)`;ctx.fillRect(-p.s/2,-p.s/2,p.s,p.s);ctx.restore()});pieces=pieces.filter(p=>p.y<c.height+30);requestAnimationFrame(draw)}draw();setTimeout(burst,700);
+function toggleMusic(){if(song.paused)playSong();else{song.pause();musicText.textContent="Paused";musicBtn.textContent="▶️";surpriseBtn.textContent="TAP TO PLAY THE BIRTHDAY SONG 🎵";surpriseBtn.classList.remove("playing")}}
+song.addEventListener("play",()=>{musicText.textContent="Playing 🎵";musicBtn.textContent="⏸️"});song.addEventListener("pause",()=>{if(!song.ended){musicText.textContent="Paused";musicBtn.textContent="▶️"}});song.addEventListener("error",()=>{musicText.textContent="Song file missing ⚠️";console.error("song.mp3 could not be loaded")});
+const c=document.getElementById("confetti"),ctx=c.getContext("2d");let pieces=[];function resize(){c.width=innerWidth;c.height=innerHeight}resize();addEventListener("resize",resize);function burst(){for(let i=0;i<180;i++)pieces.push({x:innerWidth/2,y:innerHeight*.35,vx:(Math.random()-.5)*13,vy:Math.random()*-11-3,g:.22+Math.random()*.15,s:4+Math.random()*7,r:Math.random()*6})}function draw(){ctx.clearRect(0,0,c.width,c.height);pieces.forEach(p=>{p.vy+=p.g;p.x+=p.vx;p.y+=p.vy;p.r+=.15;ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.r);ctx.fillStyle=`hsl(${Math.random()*360},90%,65%)`;ctx.fillRect(-p.s/2,-p.s/2,p.s,p.s);ctx.restore()});pieces=pieces.filter(p=>p.y<c.height+30);requestAnimationFrame(draw)}draw();setTimeout(burst,700);
 </script>
 </body>
 </html>
